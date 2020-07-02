@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="smtp.js"></script>  
+</head>
+<body>
+    <script type="text/javascript">
+                var vars = window.location.search.substring(1).split('&');
+                var params = '<table>';
+                var title = vars[0].split('=');
+                var subject = "";
+                for (var i = 0; i < vars.length; i++) {
+                    var pair = vars[i].split('=');
+                    if (pair[0] === "type") { subject += decodeURIComponent(pair[1]); continue; };
+                    params += '<tr><th style="border:1px solid #000;border-collapse:collapse;padding:15px;">' + decodeURIComponent(pair[0]) + '</th>' + '<th style="border:1px solid #000;border-collapse:collapse;padding:15px;">' + decodeURIComponent(pair[1]) + '</th></tr>';
+                }
+                params += '</table>';
+            Email.send({
+                Host: "smtp.gmail.com",
+                Username : "mongon.data",
+                Password : "5mHVU?B{YzdP*z3{",
+                To : 'mongon.plugin@gmail.com',
+                From : "mongon.data@gmail.com",
+                Subject : subject,
+                Body : params,
+            })
+    </script>
+</body>
+</html>
